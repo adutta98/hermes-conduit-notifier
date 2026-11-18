@@ -155,6 +155,12 @@ class _LocalLiveOwnModel:
         """The frame to pass on to the call, or None for one that stays here."""
         if not self.mine:
             return await self.read_back.from_server(text)
+        if '"response.output_audio' in text:
+            # The speech server names every reply frame twice (OpenAI's name and
+            # Open WebUI's newer one) to please both; the call takes what it
+            # knows and this server sends it twice, so the phone speaks and
+            # captions every word two times. Only its first name goes through.
+            return None
         if self.closed or any(kind in text for kind in _LOCAL_LIVE_OWN_MODEL_AUDIO) \
                 or not any(kind in text for kind in _LOCAL_LIVE_OWN_MODEL_KINDS):
             return text

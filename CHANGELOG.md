@@ -13,6 +13,12 @@ checks it). The format is fixed, because Conduit reads it:
 - One line per change, starting with `- `. Fixes say what goes wrong without
   the update. Plain words: these show on a phone.
 
+## 0.177.30 (2026-11-18)
+
+### Fixes
+
+- Live > Local calls no longer speak and caption every word two times when your speech server sends each reply under two event names.
+
 ## 0.177.29 (2026-11-17)
 
 ### Fixes
